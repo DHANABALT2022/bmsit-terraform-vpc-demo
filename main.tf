@@ -201,7 +201,7 @@ resource "aws_vpc_security_group_egress_rule" "private_all_out" {
 # ---------------------------------------------------------------
 resource "aws_key_pair" "demo" {
   key_name   = "demo-key"
-  public_key = file(var.public_key_path)
+  public_key = var.public_key
 }
 
 # ---------------------------------------------------------------

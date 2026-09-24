@@ -19,10 +19,9 @@ variable "instance_type" {
 variable "my_ip" {
   description = "Your public IP in CIDR form, allowed to SSH into the bastion (e.g. 49.37.10.20/32)"
   type        = string
+  sensitive   = true
 }
-
-variable "public_key_path" {
-  description = "Path to the SSH public key created with ssh-keygen"
+variable "public_key" {
+  description = "SSH public key contents (the line from demo-key.pub)"
   type        = string
-  default     = "demo-key.pub"
 }
