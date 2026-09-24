@@ -51,6 +51,14 @@ resource "aws_subnet" "private_1b" {
   tags = { Name = "private-subnet-1b" }
 }
 
+resource "aws_subnet" "private_1c" {
+  vpc_id            = aws_vpc.demo.id
+  cidr_block        = "10.0.13.0/24"
+  availability_zone = "${var.region}c"
+
+  tags = { Name = "private-subnet-1c" }
+}
+
 # ---------------------------------------------------------------
 # Step 3: Internet Gateway (created and attached in one resource)
 # ---------------------------------------------------------------
@@ -124,6 +132,11 @@ resource "aws_route_table_association" "private_1a" {
 
 resource "aws_route_table_association" "private_1b" {
   subnet_id      = aws_subnet.private_1b.id
+  route_table_id = aws_route_table.private.id
+}
+
+resource "aws_route_table_association" "private_1c" {
+  subnet_id      = aws_subnet.private_1c.id
   route_table_id = aws_route_table.private.id
 }
 
